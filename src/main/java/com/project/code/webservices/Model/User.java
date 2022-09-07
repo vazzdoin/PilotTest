@@ -4,12 +4,17 @@ import java.time.LocalDate;
 
 import org.springframework.stereotype.Component;
 
+import jakarta.validation.Constraint;
+import jakarta.validation.constraints.Past;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
 public class User {
 	public Integer id;
+	@Size(min=2, message = "Name should have minimum 2 characters")
 	public String name;
+	@Past(message = "Birthday can't be in future")
 	public LocalDate birthDate;
 
 	public User(Integer id, String name, LocalDate birthDate) {
